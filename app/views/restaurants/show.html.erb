@@ -1,0 +1,26 @@
+
+<%= render @restaurant %>
+
+<div>
+  <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant), class: 'btn btn-primary' %> |
+  <%= link_to "Back to restaurants", restaurants_path, class: 'btn btn-link' %> |
+  <%= link_to "Create a review", new_restaurant_review_path(@restaurant), class: 'btn btn-link' %> |
+  <%= button_to "Destroy this restaurant", @restaurant, method: :delete, class: 'btn btn-danger btn-sm mt-3', form: { data: { turbo_confirm: 'Are you sure?' } } %>
+</div>
+
+
+<div class="mt-5">
+  <h2>Reviews:</h2>
+
+  <% @restaurant.reviews.each do |review| %>
+    <div class="row">
+      <div class="col">
+        <%= review.content %>
+      </div>
+      <div class="col">
+        <%= button_to "Delete this review", review, method: :delete, class: 'btn btn-danger btn-sm', form: { data: { turbo_confirm: 'Are you sure?' } } %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>
